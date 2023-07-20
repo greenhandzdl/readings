@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#不适合运行，报错
 
 import os
 import datetime
@@ -75,20 +74,21 @@ firstline = input("Please enter the first line of the file:")
 # 根据用户的选择执行不同的操作
 if choice == 1: # 如果用户选择book
     os.system(f"tree &quot;{os.path.join(dir, year, 'book')}&quot;") # 打印book目录下的文件树结构
+    print("文件目录如上")
     bookname = input("因为这个选言支暂时不支持自动化命名，所以请手动输入书名: ") # 询问书名
     check_folder(os.path.join(dir, year, "book"), bookname) # 检查并创建书名目录
     filename = input("因为这个选言支暂时不支持自动化命名，所以请手动输入名字（格式：章节_abcd.md）: ") # 询问文件名
-    os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'book', bookname, filename)}&quot;") # 复制模板文件到目标目录
+    os.system(f"cp '{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}' '{os.path.join(dir, year, 'book', bookname, filename)}'") # 复制模板文件到目标目录
     with open(os.path.join(dir, year, "book", bookname, filename), "r+") as f: # 以读写模式打开文件
         content = f.read() # 读取文件内容
         f.seek(0) # 将文件指针移动到开头
-        f.write(f"#{firstline}\n&quot;{content}&quot;")  # 写入第一行和原内容
+        f.write(f"#{firstline}\n{content}") # 写入第一行和原内容
         f.write(f"\nuuid:{uuid}") # 写入最后一行
     print(f"A markdown file named {filename} has been created in {os.path.join(dir, year, 'book', bookname)} from sample_card/{types[type - 1]}.md with the first line: #{firstline}")
 elif choice == 2: # 如果用户选择card
     #在年份同级的文件里面copy相应的文件出来，并重命名为%Y%m%d%H%M%S这种格式的markdown文件，并根据用户选择的类型进行复制和重命名，并打印提示信息，用os.system函数执行cp命令，用datetime模块获取当前时间。
     filename = f"{uuid}.md"
-    os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'card', filename)}&quot;")
+    os.system(f"cp '{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}' '{os.path.join(dir, year, 'card', filename)}'")
     with open(os.path.join(dir, year, "card", filename), "r+") as f: # 以读写模式打开文件
         content = f.read() # 读取文件内容
         f.seek(0) # 将文件指针移动到开头
@@ -101,18 +101,18 @@ elif choice == 3: # 如果用户选择essay
     if len(files) == 0: # 如果没有文件
         #在年份同级的文件里面移动相应的文件出来，并根据用户选择的类型进行重命名，并打印提示信息，用os.system函数执行cp命令。
         filename = "1.md"
-        os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'essay', filename)}&quot;")
+        os.system(f"cp '{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}' '{os.path.join(dir, year, 'essay', filename)}'")
     else: # 如果有文件
         last = sorted(files)[-1] # 获取最后一个文件名
         num = int(last.split(".")[0]) + 1 # 获取最后一个文件名的数字部分并加一
         filename = f"{num}.md"
-        os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'essay', filename)}&quot;")
+        os.system(f"cp '{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}' '{os.path.join(dir, year, 'essay', filename)}'")
     with open(os.path.join(dir, year, "essay", filename), "r+") as f: # 以读写模式打开文件
         content = f.read() # 读取文件内容
         f.seek(0) # 将文件指针移动到开头
         f.write(f"#{firstline}\n{content}") # 写入第一行和原内容
         f.write(f"\nuuid:{uuid}") # 写入最后一行
-    print(f"A markdown file named {filename} has been moved from sample_card/{types[type - 1]}.md to {os.path.join(dir, year, 'essay')} withthe first line: #{firstline}")
+    print(f"A markdown file named {filename} has been moved from sample_card/{types[type - 1]}.md to {os.path.join(dir, year, 'essay')} with the first line: #{firstline}")
 else: # 如果用户选择其他无效的选项
     # 打印错误信息并退出程序
     print("Invalid choice. Please enter 1, 2 or 3.")

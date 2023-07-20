@@ -74,8 +74,14 @@ read firstline
 case $choice in
 # 如果用户选择book
 1)
-    # 判断book目录下是否存在该书的目录，后续由用户选择（暂时不需要管这个分支）
-    echo "You chose book. This feature is not implemented yet."
+    tree "$dir/$year/book"
+    read -p "因为这个选言支暂时不支持自动化命名，所以请手动输入书名: " bookname
+    check_folder $dir $year/book/$bookname
+    read -p "因为这个选言支暂时不支持自动化命名，所以请手动输入名字（格式：章节_abcd.md）: " filename
+    cp "$dir/sample_card/${types[$((type - 1))]}.md" "$dir/$year/book/$bookname/$filename"
+    sed -i "1i #$firstline" "$dir/$year/book/$bookname/$filename"
+    echo "uuid:$(date +%Y%m%d%H%M%S)" >> "$dir/$year/book/$bookname/$filename"
+    echo "A markdown file named $filename has been created in $dir/$year/book/$bookname from sample_card/${types[$((type - 1))]}.md with the first line: #$firstline"
 ;;
 # 如果用户选择card
 2)

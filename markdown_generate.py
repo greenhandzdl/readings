@@ -80,20 +80,20 @@ if choice == 1: # 如果用户选择book
     filename = input("因为这个选言支暂时不支持自动化命名，所以请手动输入名字（格式：章节_abcd.md）: ") # 询问文件名
     os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'book', bookname, filename)}&quot;") # 复制模板文件到目标目录
     with open(os.path.join(dir, year, "book", bookname, filename), "r+") as f: # 以读写模式打开文件
-    content = f.read() # 读取文件内容
-    f.seek(0) # 将文件指针移动到开头
-    f.write(f"#{firstline}\n&quot;{content}&quot;")  # 写入第一行和原内容
-    f.write(f"\nuuid:{uuid}") # 写入最后一行
+        content = f.read() # 读取文件内容
+        f.seek(0) # 将文件指针移动到开头
+        f.write(f"#{firstline}\n&quot;{content}&quot;")  # 写入第一行和原内容
+        f.write(f"\nuuid:{uuid}") # 写入最后一行
     print(f"A markdown file named {filename} has been created in {os.path.join(dir, year, 'book', bookname)} from sample_card/{types[type - 1]}.md with the first line: #{firstline}")
 elif choice == 2: # 如果用户选择card
     #在年份同级的文件里面copy相应的文件出来，并重命名为%Y%m%d%H%M%S这种格式的markdown文件，并根据用户选择的类型进行复制和重命名，并打印提示信息，用os.system函数执行cp命令，用datetime模块获取当前时间。
     filename = f"{uuid}.md"
     os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'card', filename)}&quot;")
     with open(os.path.join(dir, year, "card", filename), "r+") as f: # 以读写模式打开文件
-    content = f.read() # 读取文件内容
-    f.seek(0) # 将文件指针移动到开头
-    f.write(f'#{firstline}\n{content}') # 写入第一行和原内容
-    f.write(f"\nuuid:{uuid}") # 写入最后一行
+        content = f.read() # 读取文件内容
+        f.seek(0) # 将文件指针移动到开头
+        f.write(f'#{firstline}\n{content}') # 写入第一行和原内容
+        f.write(f"\nuuid:{uuid}") # 写入最后一行
     print(f"A markdown file named {filename} has been created in {os.path.join(dir, year, 'card')} from sample_card/{types[type - 1]}.md with the first line: #{firstline}")
 elif choice == 3: # 如果用户选择essay
     #判断该目录下是否有文件，如果没有就直接复制一个名为1.md的文件，如果有就读取最后一个文件名，再加一进行重命名，并打印提示信息，用os.listdir函数列出文件，用len函数计数，用if语句进行判断，用sorted函数排序，用split方法分割文件名和扩展名，用算术运算符加一。
@@ -108,10 +108,10 @@ elif choice == 3: # 如果用户选择essay
         filename = f"{num}.md"
         os.system(f"cp &quot;{os.path.join(dir, 'sample_card', types[type - 1] + '.md')}&quot; &quot;{os.path.join(dir, year, 'essay', filename)}&quot;")
     with open(os.path.join(dir, year, "essay", filename), "r+") as f: # 以读写模式打开文件
-    content = f.read() # 读取文件内容
-    f.seek(0) # 将文件指针移动到开头
-    f.write(f"#{firstline}\n{content}") # 写入第一行和原内容
-    f.write(f"\nuuid:{uuid}") # 写入最后一行
+        content = f.read() # 读取文件内容
+        f.seek(0) # 将文件指针移动到开头
+        f.write(f"#{firstline}\n{content}") # 写入第一行和原内容
+        f.write(f"\nuuid:{uuid}") # 写入最后一行
     print(f"A markdown file named {filename} has been moved from sample_card/{types[type - 1]}.md to {os.path.join(dir, year, 'essay')} withthe first line: #{firstline}")
 else: # 如果用户选择其他无效的选项
     # 打印错误信息并退出程序

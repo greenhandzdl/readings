@@ -1,6 +1,6 @@
+> 书海无涯，而人生有涯。
 # 基本信息介绍：
 ```bash
-➜  readings git:(main) ✗ tree
 .
 ├── demo
 │   ├── card_category
@@ -31,7 +31,28 @@
 │       │   └── time.md
 │       └── essay
 │           └── 01_title.md
+├── LICENSE
+├── markdown_generate.py
+├── markdown_generate.sh
+├── readme.md
+├── sample_card
+│   ├── 事件卡.md
+│   ├── 人物卡.md
+│   ├── 图示卡.md
+│   ├── 基础卡.md
+│   ├── 新知卡.md
+│   ├── 新词卡.md
+│   ├── 术语卡.md
+│   ├── 行动卡.md
+│   └── 金句卡.md
+└── uuid_generate.sh
+
+23 directories, 35 files
+
 ```
-这是关于本项目结构组成，对阳志平.2023.聪明的阅读者所谈及的方法进行了使用和部分修改，demo文件为原作者所谈及的实例，其余为本人的阅读经验和感想。
-demo目录下将被我封存，不再修改。
-书海无涯，而人生有涯，如果这个项目能帮助你，希望能支持下方法提出的作者。
+这是关于本项目结构组成。
+* demo文件下面是`阳志平.2023.聪明的阅读者`的例子。demo目录下将被我封存，不再修改（除非有严重错误）。
+* markdown_generate和uuid_generate是我所写的自动化工具，需要搭配sample_card使用（采取MIT协议！）
+* 其余是我个人卡片阅读化笔记
+
+如果这个项目能帮助你，如果你想为这个项目做贡献，可以FORK这个项目然后开始自己的卡片创作（开始前请先把我的卡片删掉，温馨提示），或者考虑帮忙把生成程序图形化。
